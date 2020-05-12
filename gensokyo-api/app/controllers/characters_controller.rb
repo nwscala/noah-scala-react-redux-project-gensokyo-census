@@ -1,16 +1,19 @@
+require_relative "../services/character_serializer.rb"
+
 class CharactersController < ApplicationController
   before_action :set_character, only: [:show, :update, :destroy]
 
   # GET /characters
   def index
-    @characters = Character.all
+    # byebug
+    @characters = Character.all.map{ |character| CharacterSerializer.new(character).to_serialized_json}
 
     render json: @characters
   end
 
   # GET /characters/1
   def show
-    render json: @character
+    render json: CharacterSerializer.new(@character).to_serialized_json
   end
 
   # POST /characters
@@ -18,7 +21,7 @@ class CharactersController < ApplicationController
     @character = Character.new(character_params)
 
     if @character.save
-      render json: @character, status: :created, location: @character
+      render json: CharacterSerializer.new(@character).to_serialized_json, status: :created, location: @character
     else
       render json: @character.errors, status: :unprocessable_entity
     end
