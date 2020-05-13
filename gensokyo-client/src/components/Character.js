@@ -1,11 +1,24 @@
 import React from 'react'
+import Appearance from './Appearance'
+import Spellcard from './Spellcard'
+
 
 const Character = (props) => {
-    
+    const renderAppearances = (parent) => {
+        return parent.appearances.map((appearance, index) => {
+            return <Appearance key={index} appearance={appearance} />
+        })
+    }
+
+    const renderSpellcards = (character) => {
+        return character.spellcards.map((spellcard, index) => {
+            return <Spellcard key={index} spellcard={spellcard}/> 
+        })
+    }
     
     return (
         props.character
-            ? <li>
+            ? <div>
                 <h3>Name: {props.character.name}</h3>
                 <h3>Title: {props.character.title}</h3>
                 <h3>Species: {props.character.species}</h3>
@@ -14,13 +27,13 @@ const Character = (props) => {
                 <h3>Location: {props.character.location}</h3>
                 <h3>Appearances:</h3>
                 <ul>
-                    {props.renderAppearances(props.character)}
+                    {renderAppearances(props.character)}
                 </ul>
                 <h3>Spellcards (According to the Grimoire of Marisa):</h3>
                 <ul>
-                    {props.renderSpellcards(props.character)}
+                    {renderSpellcards(props.character)}
                 </ul>
-            </li>
+            </div>
             : <h3>Girls are fetching data. Please wait warmly.</h3>
         
     )
