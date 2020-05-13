@@ -15,7 +15,8 @@ const Navbar = () => {
         <div>
             <h1>Gensokyo Census</h1>
             <NavLink to="/" exact style={link} activeStyle={{ background: "darkred" }}>Home</NavLink>
-            <NavLink to="/characters" exact style={link} activeStyle={{ background: "darkred" }}>Characters Index</NavLink>     
+            <NavLink to="/characters" exact style={link} activeStyle={{ background: "darkred" }}>Characters Index</NavLink>
+            <NavLink to="/games" exact style={link} activeStyle={{ background: "darkred" }}>Games Index</NavLink>      
         </div>
     )
 }
