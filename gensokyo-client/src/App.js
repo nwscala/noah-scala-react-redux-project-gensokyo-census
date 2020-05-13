@@ -15,7 +15,6 @@ class App extends React.Component {
   componentDidMount() {
     this.props.fetchCharacters()
     this.props.fetchGames()
-    // this.props.fetchSpellcards()
   }
   
   render() {
