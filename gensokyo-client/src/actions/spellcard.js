@@ -8,10 +8,10 @@ export const updateSpellcard = spellcard => ({
     spellcard
 })
 
-// export const destroySpellcard = spellcardID => ({
-//     type: "DESTROY_SPELLCARD",
-//     spellcardID
-// })
+export const destroySpellcard = spellcard => ({
+    type: "DESTROY_SPELLCARD",
+    spellcard
+})
 
 export const createSpellcard = (spellcard) => {
     return dispatch => {
@@ -66,19 +66,14 @@ export const patchSpellcard = (spellcard) => {
     }
 }
 
-// export const deleteSpellcard = (spellcard) => {
-//     return dispatch => {
-//         return fetch(`http://localhost:3001/spellcards/${spellcard.id}`, {
-//             method: "DELETE"
-//         })
-//             .then(resp => resp.json())
-//             .then(newSpellcard => {
-//                 if(newSpellcard.error) {
-//                     alert(newSpellcard.error)
-//                 } else {
-//                     dispatch(updateSpellcard(newSpellcard))
-//                 }
-//                 return newSpellcard
-//             })
-//     }
-// }
+export const deleteSpellcard = (spellcard) => {
+    return dispatch => {
+        return fetch(`http://localhost:3001/spellcards/${spellcard.id}`, {
+            method: "DELETE"
+        })
+            .then(() => {
+                alert("Spellcard successfully deleted!")
+                dispatch(destroySpellcard(spellcard))
+            })
+    }
+}

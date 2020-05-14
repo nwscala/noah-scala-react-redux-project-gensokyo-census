@@ -11,9 +11,8 @@ const initialState = {
 
 class AppearanceContainer extends Component {
     state = {
-        characterParent: false,
         gameParent: false,
-        displayForm: false
+        toggleForm: false
     }
 
     componentDidMount() {
@@ -23,21 +22,21 @@ class AppearanceContainer extends Component {
             })
         } else {
             this.setState({
-                characterParent: true
+                gameParent: false
             })
         }
     }
     
     renderAppearances = (parent) => {
         return parent.appearances.map((appearance, index) => {
-            return <Appearance key={index} appearance={appearance} />
+            return <Appearance key={index} appearance={appearance} parent={this.props.parent} gameParent={this.state.gameParent} />
         })
     }
 
     handleClick = () => {
         this.setState(previousState => {
             return {
-                displayForm: !previousState.displayForm
+                toggleForm: !previousState.toggleForm
             }
         })
     }
@@ -48,7 +47,7 @@ class AppearanceContainer extends Component {
                 {this.renderAppearances(this.props.parent)}
                 <br />
                 <input onClick={this.handleClick} type="button" value="Click here to create a new appearance"></input>
-                {this.state.displayForm ? <AppearanceForm appearance={initialState} parent={this.props.parent} characterParent={this.state.characterParent} gameParent={this.state.gameParent} newAppearance={true}/> : ""}
+                {this.state.toggleForm ? <AppearanceForm appearance={initialState} parent={this.props.parent} gameParent={this.state.gameParent} newAppearance={true} closeForm={this.handleClick}/> : ""}
             </ul>
         )
     }

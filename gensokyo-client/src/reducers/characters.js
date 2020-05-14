@@ -30,6 +30,60 @@ export default (state = [], action) => {
                         return character
                     }
                 })
+        case("DESTROY_SPELLCARD"):
+            return state.map(character => {
+                if(character.id === action.spellcard.character_id) {
+                    return {
+                        ...character,
+                        spellcards: character.spellcards.filter(spellcard => {
+                            return spellcard.id !== action.spellcard.id
+                        })
+                    }
+                } else {
+                    return character
+                }
+            })
+        case("ADD_CHARACTER_APPEARANCE"):
+            return state.map(character => {
+                if(character.id === action.appearance.character_id) {
+                    return {
+                        ...character,
+                        appearances: [...character.appearances, action.appearance]
+                    }
+                    } else {
+                        return character
+                    }
+            })
+        case("UPDATE_CHARACTER_APPEARANCE"):
+            return state.map(character => {
+                    if(character.id === action.appearance.character_id) {
+                        return {
+                            ...character,
+                            appearances: character.appearances.map(appearance => {
+                                if(appearance.id === action.appearance.id) {
+                                    return action.appearance
+                                } else {
+                                    return appearance
+                                }
+                            })
+                        }
+                    } else {
+                        return character
+                    }
+                })
+        case("DESTROY_CHARACTER_APPEARANCE"):
+            return state.map(character => {
+                if(character.id === action.appearance.character_id) {
+                    return {
+                        ...character,
+                        appearances: character.appearances.filter(appearance => {
+                            return appearance.id !== action.appearance.id
+                        })
+                    }
+                } else {
+                    return character
+                }
+            })
         default:
             return state
     }

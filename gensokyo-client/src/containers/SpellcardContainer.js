@@ -13,13 +13,13 @@ const initialState = {
 
 class SpellcardContainer extends Component {
     state = {
-        displayForm: false
+        toggleForm: false
     }
     
     handleClick = () => {
         this.setState(previousState => {
             return {
-                displayForm: !previousState.displayForm
+                toggleForm: !previousState.toggleForm
             }
         })
     }
@@ -36,7 +36,7 @@ class SpellcardContainer extends Component {
                 {this.renderSpellcards()}
                 <br />
                 <input onClick={this.handleClick} type="button" value="Click here to create a new spellcard"></input>
-                {this.state.displayForm ? <SpellcardForm spellcard={initialState} character={this.props.character} newSpellcard={true} /> : ""}
+                {this.state.toggleForm ? <SpellcardForm spellcard={initialState} character={this.props.character} newSpellcard={true} closeForm={this.handleClick}/> : ""}
             </div>
         )
     }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import SpellcardForm from './SpellcardForm'
+import { connect } from 'react-redux'
+import { deleteSpellcard } from '../actions/spellcard'
 
 class Spellcard extends Component {
     state = {
@@ -15,7 +17,7 @@ class Spellcard extends Component {
     }
 
     handleDeleteClick = () => {
-        
+        this.props.deleteSpellcard(this.props.spellcard)
     }
     
     render() {
@@ -27,7 +29,7 @@ class Spellcard extends Component {
                 <h5>{this.props.spellcard.star_level_name}: {this.props.spellcard.star_level}</h5>
                 <h6>Marisa's Comments: {this.props.spellcard.marisa_comments}</h6>
                 <input onClick={this.handleEditClick} type="button" value="Click here to edit this spellcard"/>
-                {this.state.toggleForm ? <SpellcardForm spellcard={this.props.spellcard} newSpellcard={false}/> : ""}
+                {this.state.toggleForm ? <SpellcardForm spellcard={this.props.spellcard} newSpellcard={false} closeForm={this.handleEditClick}/> : ""}
                 <input onClick={this.handleDeleteClick} type="button" value="Click here to delete this spellcard"/>
             </li>
             : <h3>Girls are fetching data. Please wait warmly. Or maybe this girl doesn't have any spellcards yet. You should add some!</h3>
@@ -35,4 +37,5 @@ class Spellcard extends Component {
     }
 }
 
-export default Spellcard
+
+export default connect(null, { deleteSpellcard })(Spellcard)

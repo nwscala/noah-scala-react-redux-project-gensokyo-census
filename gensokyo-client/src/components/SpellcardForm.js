@@ -43,17 +43,33 @@ class SpellcardForm extends Component {
                 .then(resp => {
                     if(!resp.error) {
                         this.resetForm()
+                        console.log(this.props)
+                        this.props.closeForm()
+                    } else {
+                        for(const field in resp.error) {
+                            this.setState({
+                                errors: {
+                                    ...this.state.errors,
+                                    [field]: resp.error[field][0]
+                                }
+                            })
+                        }
                     }
                 })
         } else {
             this.props.patchSpellcard(this.state)
                 .then(resp => {
                     if(!resp.error) {
-                        
+                        this.props.closeForm()
                     } else {
-                        this.setState({
-                            
-                        })
+                        for(const field in resp.error) {
+                            this.setState({
+                                errors: {
+                                    ...this.state.errors,
+                                    [field]: resp.error[field][0]
+                                }
+                            })
+                        }
                     }
                 }) 
         }
@@ -65,27 +81,62 @@ class SpellcardForm extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Name:
-                        <input onChange={this.handleChange} type="text" name="name" placeholder="Name" value={this.state.name}/>
+                        <input 
+                            onChange={this.handleChange} 
+                            type="text" 
+                            name="name" 
+                            placeholder={this.state.errors.name ? `Name ${this.state.errors.name}` : "Name"} 
+                            value={this.state.name} 
+                            style={this.state.errors.name ? errorStyle : {}}
+                        />
                     </label>
                     <br />
                     <label>
                         Notes:
-                        <input onChange={this.handleChange} type="text" name="notes" placeholder="Notes" value={this.state.notes} style={this.state.errors.notes ? errorStyle : {}}/>
+                        <input 
+                            onChange={this.handleChange} 
+                            type="text" 
+                            name="notes" 
+                            placeholder={this.state.errors.notes ? `Notes ${this.state.errors.notes}` : "Notes"} 
+                            value={this.state.notes} 
+                            style={this.state.errors.notes ? errorStyle : {}}
+                        />
                     </label>
                     <br />
                     <label>
                         Star Level Name:
-                        <input onChange={this.handleChange} type="text" name="star_level_name" placeholder="Star Level Name" value={this.state.star_level_name}/>
+                        <input 
+                            onChange={this.handleChange} 
+                            type="text" 
+                            name="star_level_name" 
+                            placeholder={this.state.errors.star_level_name ? `Star Level Name ${this.state.errors.star_level_name}` : "Star Level Name"} 
+                            value={this.state.star_level_name} 
+                            style={this.state.errors.star_level_name ? errorStyle : {}}
+                        />
                     </label>
                     <br />
                     <label>
                         Star Level:
-                        <input onChange={this.handleChange} type="text" name="star_level" placeholder="Star Level" value={this.state.star_level}/>
+                        <input 
+                            onChange={this.handleChange} 
+                            type="text" 
+                            name="star_level" 
+                            placeholder={this.state.errors.star_level ? `Star Level ${this.state.errors.star_level}` : "Star Level"} 
+                            value={this.state.star_level} 
+                            style={this.state.errors.star_level ? errorStyle : {}}
+                        />
                     </label>
                     <br />
                     <label>
                         Marisa's Comments:
-                        <textarea onChange={this.handleChange} type="textarea" name="marisa_comments" placeholder="Marisa's Comments" value={this.state.marisa_comments}/>
+                        <textarea 
+                            onChange={this.handleChange} 
+                            type="textarea" 
+                            name="marisa_comments" 
+                            placeholder={this.state.errors.marisa_comments ? `Marisa's Comments ${this.state.errors.marisa_comments}` : "Marisa's Comments"} 
+                            value={this.state.marisa_comments} 
+                            style={this.state.errors.marisa_comments ? errorStyle : {}}
+                        />
                     </label>
                     <br />
                     <input type="submit" value="Submit"/>
