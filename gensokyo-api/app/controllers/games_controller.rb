@@ -20,9 +20,9 @@ class GamesController < ApplicationController
     @game = Game.new(game_params)
 
     if @game.save
-      render json: GameSerializer.new(@game).to_serialized_json, status: :created, location: @game
+      render json: GameSerializer.new(@game).to_serialized_json, status: :created
     else
-      render json: @game.errors, status: :unprocessable_entity
+      render json: {error: @game.errors, error_messages: @game.errors.full_messages.to_sentence}, status: :unprocessable_entity
     end
   end
 
@@ -31,7 +31,7 @@ class GamesController < ApplicationController
     if @game.update(game_params)
       render json: @game
     else
-      render json: @game.errors, status: :unprocessable_entity
+      render json: {error: @game.errors, error_messages: @game.errors.full_messages.to_sentence}, status: :unprocessable_entity
     end
   end
 

@@ -18,9 +18,9 @@ class AppearancesController < ApplicationController
     @appearance = Appearance.new(appearance_params)
 
     if @appearance.save
-      render json: @appearance, status: :created, location: @appearance
+      render json: @appearance, status: :created
     else
-      render json: @appearance.errors, status: :unprocessable_entity
+      render json: {error: @appearance.errors, error_messages: @appearance.errors.full_messages.to_sentence}, status: :unprocessable_entity
     end
   end
 
@@ -29,7 +29,7 @@ class AppearancesController < ApplicationController
     if @appearance.update(appearance_params)
       render json: @appearance
     else
-      render json: @appearance.errors, status: :unprocessable_entity
+      render json: {error: @appearance.errors, error_messages: @appearance.errors.full_messages.to_sentence}, status: :unprocessable_entity
     end
   end
 

@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2020_05_11_211906) do
   create_table "appearances", force: :cascade do |t|
     t.integer "character_id", null: false
     t.integer "game_id", null: false
-    t.boolean "playable"
+    t.boolean "playable", default: false
     t.string "stage"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

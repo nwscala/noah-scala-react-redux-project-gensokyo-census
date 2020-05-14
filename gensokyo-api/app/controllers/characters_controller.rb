@@ -21,9 +21,9 @@ class CharactersController < ApplicationController
     @character = Character.new(character_params)
 
     if @character.save
-      render json: CharacterSerializer.new(@character).to_serialized_json, status: :created, location: @character
+      render json: CharacterSerializer.new(@character).to_serialized_json, status: :created
     else
-      render json: @character.errors, status: :unprocessable_entity
+      render json: {error: @character.errors, error_messages: @character.errors.full_messages.to_sentence}, status: :unprocessable_entity
     end
   end
 
@@ -32,7 +32,7 @@ class CharactersController < ApplicationController
     if @character.update(character_params)
       render json: @character
     else
-      render json: @character.errors, status: :unprocessable_entity
+      render json: {error: @character.errors, error_messages: @character.errors.full_messages.to_sentence}, status: :unprocessable_entity
     end
   end
 

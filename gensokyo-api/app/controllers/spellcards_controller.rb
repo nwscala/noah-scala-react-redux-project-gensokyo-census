@@ -18,7 +18,7 @@ class SpellcardsController < ApplicationController
     @spellcard = Spellcard.new(spellcard_params)
 
     if @spellcard.save
-      render json: @spellcard, status: :created, location: @spellcard
+      render json: @spellcard, status: :created
     else
       render json: {error: @spellcard.errors, error_messages: @spellcard.errors.full_messages.to_sentence}, status: :unprocessable_entity
     end
