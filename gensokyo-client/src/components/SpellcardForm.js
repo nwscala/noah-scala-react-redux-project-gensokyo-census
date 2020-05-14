@@ -2,8 +2,21 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createSpellcard, patchSpellcard } from '../actions/spellcard'
 
+const errorStyle = {
+    borderColor: "red"
+}
+
 class SpellcardForm extends Component {
-    state = this.props.spellcard
+    state = {
+        ...this.props.spellcard,
+        errors: {
+            name: false,
+            notes: false,
+            star_level_name: false,
+            star_level: false,
+            marisa_comments: false
+        }
+    }
 
     componentDidMount() {
         if(!this.state.character_id) {
@@ -37,6 +50,10 @@ class SpellcardForm extends Component {
                 .then(resp => {
                     if(!resp.error) {
                         
+                    } else {
+                        this.setState({
+                            
+                        })
                     }
                 }) 
         }
@@ -53,7 +70,7 @@ class SpellcardForm extends Component {
                     <br />
                     <label>
                         Notes:
-                        <input onChange={this.handleChange} type="text" name="notes" placeholder="Notes" value={this.state.notes}/>
+                        <input onChange={this.handleChange} type="text" name="notes" placeholder="Notes" value={this.state.notes} style={this.state.errors.notes ? errorStyle : {}}/>
                     </label>
                     <br />
                     <label>

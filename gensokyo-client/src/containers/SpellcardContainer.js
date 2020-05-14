@@ -36,7 +36,7 @@ class SpellcardContainer extends Component {
                 {this.renderSpellcards()}
                 <br />
                 <input onClick={this.handleClick} type="button" value="Click here to create a new spellcard"></input>
-                {this.state.displayForm ? <SpellcardForm spellcard={initialState} character={this.props.character} newSpellcard={true}/> : ""}
+                {this.state.displayForm ? <SpellcardForm spellcard={initialState} character={this.props.character} newSpellcard={true} /> : ""}
             </div>
         )
     }

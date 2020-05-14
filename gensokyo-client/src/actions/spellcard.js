@@ -30,7 +30,7 @@ export const createSpellcard = (spellcard) => {
             .then(resp => resp.json())
             .then(newSpellcard => {
                 if(newSpellcard.error) {
-                    alert(newSpellcard.error)
+                    alert(newSpellcard.error_messages)
                 } else {
                     dispatch(addSpellcard(newSpellcard))
                 }
@@ -56,12 +56,13 @@ export const patchSpellcard = (spellcard) => {
             .then(resp => resp.json())
             .then(newSpellcard => {
                 if(newSpellcard.error) {
-                    alert(newSpellcard.error)
+                    alert(newSpellcard.error_messages)
                 } else {
                     dispatch(updateSpellcard(newSpellcard))
                 }
                 return newSpellcard
             })
+            
     }
 }
 

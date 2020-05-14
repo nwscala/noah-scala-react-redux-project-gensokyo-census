@@ -20,7 +20,7 @@ class SpellcardsController < ApplicationController
     if @spellcard.save
       render json: @spellcard, status: :created, location: @spellcard
     else
-      render json: @spellcard.errors, status: :unprocessable_entity
+      render json: {error: @spellcard.errors, error_messages: @spellcard.errors.full_messages.to_sentence}, status: :unprocessable_entity
     end
   end
 
@@ -29,7 +29,7 @@ class SpellcardsController < ApplicationController
     if @spellcard.update(spellcard_params)
       render json: @spellcard
     else
-      render json: @spellcard.errors, status: :unprocessable_entity
+      render json: {error: @spellcard.errors, error_messages: @spellcard.errors.full_messages.to_sentence}, status: :unprocessable_entity
     end
   end
 
