@@ -1,15 +1,7 @@
 import React from 'react'
-import Appearance from './Appearance'
-
-
+import AppearanceContainer from '../containers/AppearanceContainer'
 
 const Game = (props) => {
-    const renderAppearances = (parent) => {
-        return parent.appearances.map((appearance, index) => {
-            return <Appearance key={index} appearance={appearance} />
-        })
-    }
-    
     return (
         props.game
         ? <div>
@@ -25,9 +17,9 @@ const Game = (props) => {
                 </li>
             </ul>
             <h3>Appearances:</h3>
-            <ul>
-                {renderAppearances(props.game)}
-            </ul>
+            <div>
+                <AppearanceContainer parent={props.game}/>
+            </div>
         </div>
         : <h3>Girls are fetching data. Please wait warmly.</h3>
     )
