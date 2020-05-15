@@ -18,7 +18,7 @@ const GameContainer = (props) => {
     return (
         <>
             <Switch>
-                <Route exact path="/games" render={(routerProps) => <GameLinks {...routerProps} games={props.games}/> }/>
+                <Route exact path="/games" render={(routerProps) => <GameLinks {...routerProps} games={props.games} characters={props.characters}/> }/>
                 <Route exact path="/games/new" render={ routerProps => <GameForm {...routerProps} newGame={true} game={initialGame}/> }/>
                 <Route exact path="/games/:id" render={(routerProps) => {
                     const game = props.games.find(game => game.id === parseInt(routerProps.match.params.id))
@@ -31,6 +31,7 @@ const GameContainer = (props) => {
 
 const mapStateToProps = state => {
     return {
+        characters: state.characters,
         games: state.games
     }
   }
