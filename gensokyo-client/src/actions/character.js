@@ -3,19 +3,19 @@ export const loadCharacters = characters => ({
     characters
 })
 
-export const addCharacter = characters => ({
+export const addCharacter = character => ({
     type: "ADD_CHARACTER",
-    characters
+    character
 })
 
-export const updateCharacter = characters => ({
+export const updateCharacter = character => ({
     type: "UPDATE_CHARACTER",
-    characters
+    character
 })
 
-export const destroyCharacter = characters => ({
+export const destroyCharacter = character => ({
     type: "DESTROY_CHARACTER",
-    characters
+    character
 })
 
 export const fetchCharacters = () => {

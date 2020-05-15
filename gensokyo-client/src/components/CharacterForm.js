@@ -36,7 +36,7 @@ class CharacterForm extends Component {
                 .then(resp => {
                     if(!resp.error) {
                         this.resetForm()
-                        this.props.history.push("/")
+                        this.props.history.push("/characters")
                     } else {
                         for(const field in resp.error) {
                             this.setState({

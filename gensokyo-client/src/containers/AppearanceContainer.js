@@ -28,9 +28,12 @@ class AppearanceContainer extends Component {
     }
     
     renderAppearances = (parent) => {
-        return parent.appearances.map((appearance, index) => {
-            return <Appearance key={index} appearance={appearance} parent={this.props.parent} gameParent={this.state.gameParent} />
-        })
+        if(parent.appearances) {
+            return parent.appearances.map((appearance, index) => {
+                return <Appearance key={index} appearance={appearance} parent={this.props.parent} gameParent={this.state.gameParent} />
+            })
+        }
+        
     }
 
     handleClick = () => {

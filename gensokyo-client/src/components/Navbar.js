@@ -18,8 +18,9 @@ const Navbar = () => {
             <div className="linkContainer">
                 <NavLink to="/" exact style={link} activeStyle={{ background: "darkred" }}>Home</NavLink>
                 <NavLink to="/characters" exact style={link} activeStyle={{ background: "darkred" }}>Characters Index</NavLink>
-                <NavLink to="/new/character" exact style={link} activeStyle={{ background: "darkred" }}>New Character Form</NavLink>
-                <NavLink to="/games" exact style={link} activeStyle={{ background: "darkred" }}>Games Index</NavLink>  
+                <NavLink to="/characters/new" exact style={link} activeStyle={{ background: "darkred" }}>New Character Form</NavLink>
+                <NavLink to="/games" exact style={link} activeStyle={{ background: "darkred" }}>Games Index</NavLink>
+                <NavLink to="/games/new" exact style={link} activeStyle={{background: "darkred"}}>New Game Form</NavLink>  
             </div>
                 
         </div>

@@ -25,9 +25,12 @@ class SpellcardContainer extends Component {
     }
     
     renderSpellcards = () => {
-        return this.props.character.spellcards.map((spellcard, index) => {
-            return <Spellcard key={index} spellcard={spellcard}/> 
-        })
+        if(this.props.character.spellcards) {
+            return this.props.character.spellcards.map((spellcard, index) => {
+                return <Spellcard key={index} spellcard={spellcard}/> 
+            })
+        }
+        
     }
 
     render() {

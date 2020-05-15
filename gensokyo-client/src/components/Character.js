@@ -19,7 +19,10 @@ class Character extends Component {
     }
 
     handleDeleteClick = () => {
-        this.props.deleteCharacter(this.props.character)
+        this.props.deleteCharacter(this.props.character, this.props.history)
+            .then( () => {
+                this.props.history.push("/characters")
+            })
     }
     
     render () {
