@@ -11,7 +11,7 @@ const initialCharacter = {
     species: "",
     abilities: "",
     occupation: "",
-    location: ""
+    location: "",
 }
 
 

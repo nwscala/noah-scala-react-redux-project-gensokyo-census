@@ -48,7 +48,6 @@ class Character extends Component {
                     </ul>
                 </div>
                 : <h3>Girls are fetching data. Please wait warmly.</h3>
-            
         )
     }
 }

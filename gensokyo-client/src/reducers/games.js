@@ -48,7 +48,10 @@ export default (state = [], action) => {
         case("UPDATE_GAME"):
             return state.map(game => {
                 if(game.id === action.game.id) {
-                    return action.game
+                    return {
+                        ...game,
+                        ...action.game
+                    }
                 } else {
                     return game
                 }

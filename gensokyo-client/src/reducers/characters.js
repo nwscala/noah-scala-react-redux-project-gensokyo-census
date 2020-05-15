@@ -89,7 +89,10 @@ export default (state = [], action) => {
         case("UPDATE_CHARACTER"):
             return state.map(character => {
                 if(character.id === action.character.id) {
-                    return action.character
+                    return {
+                        ...character,
+                        ...action.character
+                    }
                 } else {
                     return character
                 }
