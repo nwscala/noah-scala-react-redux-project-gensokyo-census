@@ -5,18 +5,23 @@ const link = {
     width: '100px',
     padding: '12px',
     margin: '0 6px 6px',
-    background: 'red',
+    background: 'firebrick',
     textDecoration: 'none',
     color: 'white',
+    borderRadius: '20px',
   }
 
 const Navbar = () => {
     return (
         <div>
             <h1>Gensokyo Census</h1>
-            <NavLink to="/" exact style={link} activeStyle={{ background: "darkred" }}>Home</NavLink>
-            <NavLink to="/characters" exact style={link} activeStyle={{ background: "darkred" }}>Characters Index</NavLink>
-            <NavLink to="/games" exact style={link} activeStyle={{ background: "darkred" }}>Games Index</NavLink>      
+            <div className="linkContainer">
+                <NavLink to="/" exact style={link} activeStyle={{ background: "darkred" }}>Home</NavLink>
+                <NavLink to="/characters" exact style={link} activeStyle={{ background: "darkred" }}>Characters Index</NavLink>
+                <NavLink to="/new/character" exact style={link} activeStyle={{ background: "darkred" }}>New Character Form</NavLink>
+                <NavLink to="/games" exact style={link} activeStyle={{ background: "darkred" }}>Games Index</NavLink>  
+            </div>
+                
         </div>
     )
 }

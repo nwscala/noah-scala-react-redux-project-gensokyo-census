@@ -43,7 +43,6 @@ class SpellcardForm extends Component {
                 .then(resp => {
                     if(!resp.error) {
                         this.resetForm()
-                        console.log(this.props)
                         this.props.closeForm()
                     } else {
                         for(const field in resp.error) {

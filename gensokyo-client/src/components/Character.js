@@ -1,30 +1,53 @@
-import React from 'react'
+import React, { Component } from 'react'
 import SpellcardContainer from '../containers/SpellcardContainer'
 import AppearanceContainer from '../containers/AppearanceContainer'
+import CharacterForm from './CharacterForm'
+import { connect } from 'react-redux'
+import { deleteCharacter } from '../actions/character'
 
+class Character extends Component {
+    state = {
+        toggleForm: false
+    }
 
-const Character = (props) => {
-    return (
-        props.character
-            ? <div>
-                <h3>Name: {props.character.name}</h3>
-                <h3>Title: {props.character.title}</h3>
-                <h3>Species: {props.character.species}</h3>
-                <h3>Abilities: {props.character.abilities}</h3>
-                <h3>Occupation: {props.character.occupation ? props.character.occupation : "None"}</h3>
-                <h3>Location: {props.character.location}</h3>
-                <h3>Appearances:</h3>
-                <div>
-                    <AppearanceContainer parent={props.character}/>
+    handleEditClick = () => {
+        this.setState(previousState => {
+            return {
+                toggleForm: !previousState.toggleForm
+            }
+        })
+    }
+
+    handleDeleteClick = () => {
+        this.props.deleteCharacter(this.props.character)
+    }
+    
+    render () {
+        return (
+            this.props.character
+                ? <div>
+                    <p><span>Name:</span> {this.props.character.name}</p>
+                    <p><span>Title:</span> {this.props.character.title}</p>
+                    <p><span>Species:</span> {this.props.character.species}</p>
+                    <p><span>Abilities:</span> {this.props.character.abilities}</p>
+                    <p><span>Occupation:</span> {this.props.character.occupation ? this.props.character.occupation : "None"}</p>
+                    <p><span>Location:</span> {this.props.character.location}</p>
+                    <input onClick={this.handleEditClick} type="button" value="Click here to edit this character"/>
+                    {this.state.toggleForm ? <CharacterForm character={this.props.character} newCharacter={false} closeForm={this.handleEditClick}/> : ""}
+                    <input onClick={this.handleDeleteClick} type="button" value="Click here to delete this character"/>
+                    <p><span>Appearances:</span></p>
+                    <div>
+                        <AppearanceContainer parent={this.props.character}/>
+                    </div>
+                    <p><span>Spellcards (According to the Grimoire of Marisa):</span></p>
+                    <ul>
+                        <SpellcardContainer character={this.props.character}/>
+                    </ul>
                 </div>
-                <h3>Spellcards (According to the Grimoire of Marisa):</h3>
-                <ul>
-                    <SpellcardContainer character={props.character}/>
-                </ul>
-            </div>
-            : <h3>Girls are fetching data. Please wait warmly.</h3>
-        
-    )
+                : <h3>Girls are fetching data. Please wait warmly.</h3>
+            
+        )
+    }
 }
 
-export default Character
+export default connect(null, { deleteCharacter })(Character)

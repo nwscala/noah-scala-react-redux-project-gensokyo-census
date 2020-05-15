@@ -84,6 +84,20 @@ export default (state = [], action) => {
                     return character
                 }
             })
+        case("ADD_CHARACTER"):
+            return [...state, action.character]
+        case("UPDATE_CHARACTER"):
+            return state.map(character => {
+                if(character.id === action.character.id) {
+                    return action.character
+                } else {
+                    return character
+                }
+            })
+        case("DESTROY_CHARACTER"):
+            return state.filter(character => {
+                return character.id !== action.character.id
+            })
         default:
             return state
     }

@@ -1,6 +1,3 @@
-.App {
-  text-align: center;
-}
 
 .App-logo {
   height: 40vmin;
@@ -35,4 +32,52 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+input[type=text] {
+  width: 40%;
+  height: 35px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+
+span {
+  font-weight: bold;
+  border-radius: 7px;;
+  border-width: thick;
+}
+
+textarea {
+  width: 40%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  resize: none;
+}
+
+select {
+  width: 30%;
+  height: 35px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+
+input[type=button], input[type=submit] {
+  border-radius: 30px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.linkContainer {
+  text-align: center;
+}
+
+div.home {
+  text-align: center;
 }

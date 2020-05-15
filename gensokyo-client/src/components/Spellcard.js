@@ -24,10 +24,10 @@ class Spellcard extends Component {
         return (
             this.props.spellcard
             ? <li>
-                <h5>Name: {this.props.spellcard.name}</h5>
-                <h5>Notes: {this.props.spellcard.notes}</h5>
-                <h5>{this.props.spellcard.star_level_name}: {this.props.spellcard.star_level}</h5>
-                <h6>Marisa's Comments: {this.props.spellcard.marisa_comments}</h6>
+                <p><span>Name:</span> {this.props.spellcard.name}</p>
+                <p><span>Notes:</span> {this.props.spellcard.notes}</p>
+                <p><span>{this.props.spellcard.star_level_name}:</span> {this.props.spellcard.star_level}</p>
+                <p><span>Marisa's Comments:</span> {this.props.spellcard.marisa_comments}</p>
                 <input onClick={this.handleEditClick} type="button" value="Click here to edit this spellcard"/>
                 {this.state.toggleForm ? <SpellcardForm spellcard={this.props.spellcard} newSpellcard={false} closeForm={this.handleEditClick}/> : ""}
                 <input onClick={this.handleDeleteClick} type="button" value="Click here to delete this spellcard"/>

@@ -5,18 +5,18 @@ const Game = (props) => {
     return (
         props.game
         ? <div>
-            <h3>Title: {props.game.name}</h3>
-            <h3>Developer: {props.game.developer}</h3>
-            <h3>Publisher: {props.game.publisher}</h3>
-            <h3>Genre: {props.game.genre}</h3>
-            <h3>Release Date: {props.game.release_date}</h3>
-            <h3>Story:</h3>
+            <p><span>Title:</span> {props.game.name}</p>
+            <p><span>Developer:</span> {props.game.developer}</p>
+            <p><span>Publisher:</span> {props.game.publisher}</p>
+            <p><span>Genre:</span> {props.game.genre}</p>
+            <p><span>Release Date:</span> {props.game.release_date}</p>
+            <p><span>Story:</span></p>
             <ul>
                 <li>
                     <p>{props.game.story}</p>
                 </li>
             </ul>
-            <h3>Appearances:</h3>
+            <p><span>Appearances:</span></p>
             <div>
                 <AppearanceContainer parent={props.game}/>
             </div>

@@ -34,6 +34,7 @@ class Appearance extends Component {
         this.props.appearance
         ? <li>
             {this.parentCharacter() ? <Link to={`/characters/${this.parentCharacter().id}`}>{this.parentCharacter().name}</Link> : ""} was {this.props.appearance.playable ? "playable" : `a ${this.props.appearance.stage}`} in {this.parentGame() ? <Link to={`/games/${this.parentGame().id}`}>{this.parentGame().name}</Link> : ""}
+            <br />
             <input onClick={this.handleEditClick} type="button" value="Click here to edit this appearance"/>
             {this.state.toggleForm ? <AppearanceForm appearance={this.props.appearance} parent={this.props.parent} gameParent={this.props.gameParent} newAppearance={false} closeForm={this.handleEditClick}/> : ""}
             <input onClick={this.handleDeleteClick} type="button" value="Click here to delete this appearance"/> 
