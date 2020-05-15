@@ -73,7 +73,7 @@ class AppearanceForm extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        if(this.props.gameParent && this.props.newAppearance) {
+        if(this.props.newAppearance) {
             this.props.createAppearance(this.state)
                 .then(resp => {
                     if(!resp.error) {
@@ -90,24 +90,7 @@ class AppearanceForm extends Component {
                         }
                     }
                 })
-        } else if(!this.props.gameParent && this.props.newAppearance) {
-            this.props.createAppearance(this.state)
-                .then(resp => {
-                    if(!resp.error) {
-                        this.resetForm()
-                        this.props.closeForm()
-                    } else {
-                        for(const field in resp.error) {
-                            this.setState({
-                                errors: {
-                                    ...this.state.errors,
-                                    [field]: resp.error[field][0]
-                                }
-                            })
-                        }
-                    }
-                })
-        } else if(this.props.gameParent && !this.props.newAppearance) {
+        } else {
             this.props.patchAppearance(this.state)
                 .then(resp => {
                     if(!resp.error) {
@@ -123,23 +106,7 @@ class AppearanceForm extends Component {
                         }
                     }
                 })
-        } else if(!this.props.gameParent && !this.props.newAppearance) {
-            this.props.patchAppearance(this.state)
-                .then(resp => {
-                    if(!resp.error) {
-                        this.props.closeForm()
-                    } else {
-                        for(const field in resp.error) {
-                            this.setState({
-                                errors: {
-                                    ...this.state.errors,
-                                    [field]: resp.error[field][0]
-                                }
-                            })
-                        }
-                    }
-                })
-        }
+        } 
     }
 
     render() {

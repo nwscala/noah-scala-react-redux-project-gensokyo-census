@@ -43,6 +43,20 @@ export default (state = [], action) => {
                     return game
                 }
             })
+        case("ADD_GAME"):
+            return [...state, action.game]
+        case("UPDATE_GAME"):
+            return state.map(game => {
+                if(game.id === action.game.id) {
+                    return action.game
+                } else {
+                    return game
+                }
+            })
+        case("DESTROY_GAME"):
+            return state.filter(game => {
+                return game.id !== action.game.id
+            })
         default:
             return state
     }
