@@ -20,6 +20,18 @@ class GameLinks extends Component {
         })
     }
 
+    handleLike = ({ target: { name } }) => {
+        if(this.state[name]){
+            this.setState(previousState => ({
+                [name]: previousState[name] + 1
+            }))
+        } else {
+            this.setState({
+                [name]: 1
+            })
+        }
+    }
+
     sortGames = () => {
         const copyOfGames = [...this.props.games]
         
@@ -69,6 +81,7 @@ class GameLinks extends Component {
         return gamesArray.map(game => {
             return <li key={game.id}>
                     <Link key={game.id} to={`/games/${game.id}`}>{game.name}</Link>
+                    <input onClick={this.handleLike} name={game.name} type="button" value={this.state[game.name] ? `Number of Likes: ${this.state[game.name]}` : "Number of Likes: 0"} />
                 </li>
         })
     }
